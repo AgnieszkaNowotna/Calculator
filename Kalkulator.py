@@ -24,7 +24,7 @@ if action_type == "2":
     x = int(input("Wprowadź odjemną: "))
     y = int(input("Wprowadź odjemnik: "))
     difference = x - y
-    logging.info (f'Odejmuję liczby: {x} i {y}')
+    logging.info (f'Odejmuję liczbę {y} od liczby {x}')
     print (f'Wynik to: {difference}')
 
 if action_type == "3":
@@ -43,3 +43,10 @@ if action_type == "3":
     for number in numbers:
         product *= int(number)
     print(f'Wynik to: {product}')
+
+if action_type == "4":
+    x = int(input("Wprowadź dzielną: "))
+    y = int(input("Wprowadź dzielnik: "))
+    quotient = x/y
+    logging.info (f'Dzielę liczbę {x} przez liczbę {y}')
+    print (f'Wynik to: {quotient}')
