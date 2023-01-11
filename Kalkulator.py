@@ -5,14 +5,31 @@ action_type = input("Podaj działanie, wprowadzająć odpowiednią liczbę: \n1 
 
 if action_type == "1":
     numbers = []
-    numbers.append(input("Wprowadź pierwszy składnik:"))
-    numbers.append(input("Wprowadź drugi składnik:"))
     i = 1
     while i > 0:
-        numbers.append(input('Wprowadź kolejny składnik lub wpisz "end" aby uzyskać sumę wprowadzonych liczb:'))
-        if numbers[-1] == "end":
-            numbers.pop()
-            i -= 1
+        if i < 3:
+            x = input("Wprowadź składnik:")
+            if bool(x.isdigit()) == True:
+                pass
+            else:
+                print("Wprowadzona wartość nie jest liczbą całkowitą")
+                print("Proszę o ponowne wprowadzenie wartości")
+                continue
+            numbers.append(x)
+            i += 1
+        else:
+            x = input('Wprowadź składnik lub wpisz "end" aby uzyskać sumę wprowadzonych liczb:')
+            if bool(x.isdigit()) == True or x == "end":
+                pass
+            else:
+                print("Wprowadzona wartość nie jest liczbą całkowitą")
+                print("Proszę o ponowne wprowadzenie wartości")
+                continue
+            numbers.append(x)
+            i += 1
+            if numbers[-1] == "end":
+                numbers.pop()
+                i -= i
     numbers_string = ', '.join(numbers)
     logging.info(f'Dodaję liczby: {numbers_string}')
     result = 0
@@ -21,22 +38,57 @@ if action_type == "1":
     print(f'Wynik to: {result}')
 
 if action_type == "2":
-    x = int(input("Wprowadź odjemną: "))
-    y = int(input("Wprowadź odjemnik: "))
-    difference = x - y
+    i = 1
+    while i > 0:
+        x = (input("Wprowadź odjemną: "))
+        if bool(x.isdigit()) == True:
+            pass
+        else:
+            print("Wprowadzona wartość nie jest liczbą całkowitą")
+            print("Proszę o ponowne wprowadzenie wartości")
+            continue
+        i -=1
+    i = 1
+    while i > 0:
+        y = (input("Wprowadź odjemnik: "))
+        if bool(y.isdigit()) == True:
+            pass
+        else:
+            print("Wprowadzona wartość nie jest liczbą całkowitą")
+            print("Proszę o ponowne wprowadzenie wartości")
+            continue
+        i -=1
+    difference = int(x) - int(y)
     logging.info (f'Odejmuję liczbę {y} od liczby {x}')
     print (f'Wynik to: {difference}')
 
 if action_type == "3":
     numbers = []
-    numbers.append(input("Wprowadź pierwszy czynnik:"))
-    numbers.append(input("Wprowadź drugi czynnik:"))
     i = 1
     while i > 0:
-        numbers.append(input('Wprowadź kolejny czynnik lub wpisz "end" aby uzyskać iloczyn wprowadzonych liczb:'))
-        if numbers[-1] == "end":
-            numbers.pop()
-            i -= 1
+        if i < 3:
+            x = input("Wprowadź czynnik:")
+            if bool(x.isdigit()) == True:
+                pass
+            else:
+                print("Wprowadzona wartość nie jest liczbą całkowitą")
+                print("Proszę o ponowne wprowadzenie wartości")
+                continue
+            numbers.append(x)
+            i += 1
+        else:
+            x = input('Wprowadź czynnik lub wpisz "end" aby uzyskać sumę wprowadzonych liczb:')
+            if bool(x.isdigit()) == True or x == "end":
+                pass
+            else:
+                print("Wprowadzona wartość nie jest liczbą całkowitą")
+                print("Proszę o ponowne wprowadzenie wartości")
+                continue
+            numbers.append(x)
+            i += 1
+            if numbers[-1] == "end":
+                numbers.pop()
+                i -= i
     numbers_string = ', '.join(numbers)
     logging.info(f'Mnożę liczby: {numbers_string}')
     product = 1
@@ -45,8 +97,26 @@ if action_type == "3":
     print(f'Wynik to: {product}')
 
 if action_type == "4":
-    x = int(input("Wprowadź dzielną: "))
-    y = int(input("Wprowadź dzielnik: "))
-    quotient = x/y
+    i = 1
+    while i > 0:
+        x = (input("Wprowadź dzielną: "))
+        if bool(x.isdigit()) == True:
+            pass
+        else:
+            print("Wprowadzona wartość nie jest liczbą całkowitą")
+            print("Proszę o ponowne wprowadzenie wartości")
+            continue
+        i -=1
+    i = 1
+    while i > 0:
+        y = (input("Wprowadź dzielną: "))
+        if bool(y.isdigit()) == True:
+            pass
+        else:
+            print("Wprowadzona wartość nie jest liczbą całkowitą")
+            print("Proszę o ponowne wprowadzenie wartości")
+            continue
+        i -=1
+    quotient = int(x)/int(y)
     logging.info (f'Dzielę liczbę {x} przez liczbę {y}')
     print (f'Wynik to: {quotient}')
