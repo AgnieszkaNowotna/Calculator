@@ -26,3 +26,20 @@ if action_type == "2":
     difference = x - y
     logging.info (f'Odejmuję liczby: {x} i {y}')
     print (f'Wynik to: {difference}')
+
+if action_type == "3":
+    numbers = []
+    numbers.append(input("Wprowadź pierwszy czynnik:"))
+    numbers.append(input("Wprowadź drugi czynnik:"))
+    i = 1
+    while i > 0:
+        numbers.append(input('Wprowadź kolejny czynnik lub wpisz "end" aby uzyskać iloczyn wprowadzonych liczb:'))
+        if numbers[-1] == "end":
+            numbers.pop()
+            i -= 1
+    numbers_string = ', '.join(numbers)
+    logging.info(f'Mnożę liczby: {numbers_string}')
+    product = 1
+    for number in numbers:
+        product *= int(number)
+    print(f'Wynik to: {product}')
