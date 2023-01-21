@@ -1,122 +1,122 @@
 import logging
 logging.basicConfig(level = logging.DEBUG)
+from enum import IntEnum
 
-action_type = input("Podaj działanie, wprowadzająć odpowiednią liczbę: \n1 - dodawanie \n2 - odejmowanie \n3 - mnożenie\n4 - dzielenie\n")
+def check_if_float(number):
+    try:
+        float(number)
+        return True
+    except ValueError:
+        return False
 
-if action_type == "1":
+def check_if_number1():
+    j = 1
+    while j > 0:
+        number = input("Wprowadź liczbę:")
+        if check_if_float(number) == True:
+            j -= 1
+        else:
+            print("Wprowadzona wartość nie jest liczbą")
+            print("Proszę o ponowne wprowadzenie wartości")
+            continue
+    return float(number)
+
+def check_if_number2():
+    j = 1
+    while j > 0:
+        number = input('Wprowadź kolejną liczbę lub wpisz "stop" aby uzyskać rezultat działania:')
+        if check_if_float(number) == True or number == "stop" or number == "Stop":
+            j -= 1
+        else:
+            print("Wprowadzona wartość nie jest liczbą")
+            print("Proszę o ponowne wprowadzenie wartości")
+            continue
+    return number
+
+def check_if_number3():
+    i = 1
+    while i > 0:
+        number = (input("Wprowadź liczbę: "))
+        if check_if_float(number) == True:
+            pass
+        else:
+            print("Wprowadzona wartość nie jest liczbą")
+            print("Proszę o ponowne wprowadzenie wartości")
+            continue
+        i -=1
+    i = 1
+    return float(number)
+
+
+Operation = IntEnum('Operation','adding subtraction multiplication dividing')
+operation_type = int(input("""Podaj działanie, wprowadzająć odpowiednią liczbę: 
+1 - dodawanie 
+2 - odejmowanie 
+3 - mnożenie
+4 - dzielenie
+"""))
+
+if operation_type == Operation.adding:
     numbers = []
     i = 1
     while i > 0:
         if i < 3:
-            x = input("Wprowadź składnik:")
-            if bool(x.isdigit()) == True:
-                pass
-            else:
-                print("Wprowadzona wartość nie jest liczbą całkowitą")
-                print("Proszę o ponowne wprowadzenie wartości")
-                continue
+            x = check_if_number1()
             numbers.append(x)
             i += 1
         else:
-            x = input('Wprowadź składnik lub wpisz "end" aby uzyskać sumę wprowadzonych liczb:')
-            if bool(x.isdigit()) == True or x == "end":
-                pass
-            else:
-                print("Wprowadzona wartość nie jest liczbą całkowitą")
-                print("Proszę o ponowne wprowadzenie wartości")
-                continue
-            numbers.append(x)
-            i += 1
-            if numbers[-1] == "end":
-                numbers.pop()
+            x = check_if_number2()
+            if x == "stop" or x == "Stop":
                 i -= i
-    numbers_string = ', '.join(numbers)
-    logging.info(f'Dodaję liczby: {numbers_string}')
+            else:
+                numbers.append(float(x))
+    numbers_string = ', '.join([str(number) for number in numbers])
+    logging.info(f'Dodaję liczby: {str(numbers_string)}')
     result = 0
     for number in numbers:
-        result += int(number)
+        result += number
     print(f'Wynik to: {result}')
 
-if action_type == "2":
-    i = 1
-    while i > 0:
-        x = (input("Wprowadź odjemną: "))
-        if bool(x.isdigit()) == True:
-            pass
-        else:
-            print("Wprowadzona wartość nie jest liczbą całkowitą")
-            print("Proszę o ponowne wprowadzenie wartości")
-            continue
-        i -=1
-    i = 1
-    while i > 0:
-        y = (input("Wprowadź odjemnik: "))
-        if bool(y.isdigit()) == True:
-            pass
-        else:
-            print("Wprowadzona wartość nie jest liczbą całkowitą")
-            print("Proszę o ponowne wprowadzenie wartości")
-            continue
-        i -=1
-    difference = int(x) - int(y)
+if operation_type == Operation.subtraction:
+    x = check_if_number3()
+    y = check_if_number3()
     logging.info (f'Odejmuję liczbę {y} od liczby {x}')
-    print (f'Wynik to: {difference}')
+    print (f'Wynik to: {x-y}')
 
-if action_type == "3":
+if operation_type == Operation.multiplication:
     numbers = []
     i = 1
     while i > 0:
         if i < 3:
-            x = input("Wprowadź czynnik:")
-            if bool(x.isdigit()) == True:
-                pass
-            else:
-                print("Wprowadzona wartość nie jest liczbą całkowitą")
-                print("Proszę o ponowne wprowadzenie wartości")
-                continue
+            x = check_if_number1()
             numbers.append(x)
             i += 1
         else:
-            x = input('Wprowadź czynnik lub wpisz "end" aby uzyskać sumę wprowadzonych liczb:')
-            if bool(x.isdigit()) == True or x == "end":
-                pass
-            else:
-                print("Wprowadzona wartość nie jest liczbą całkowitą")
-                print("Proszę o ponowne wprowadzenie wartości")
-                continue
-            numbers.append(x)
-            i += 1
-            if numbers[-1] == "end":
-                numbers.pop()
+            x = check_if_number2()
+            if x == "stop" or x == "Stop":
                 i -= i
-    numbers_string = ', '.join(numbers)
-    logging.info(f'Mnożę liczby: {numbers_string}')
+            else:
+                numbers.append(float(x))
+    numbers_string = ', '.join([str(number) for number in numbers])
+    logging.info(f'Mnożę liczby: {str(numbers_string)}')
     product = 1
     for number in numbers:
-        product *= int(number)
+        product *= number
     print(f'Wynik to: {product}')
 
-if action_type == "4":
+if operation_type == Operation.dividing:
+    x = check_if_number3()
+    y = check_if_number3()
     i = 1
     while i > 0:
-        x = (input("Wprowadź dzielną: "))
-        if bool(x.isdigit()) == True:
-            pass
-        else:
-            print("Wprowadzona wartość nie jest liczbą całkowitą")
-            print("Proszę o ponowne wprowadzenie wartości")
+        if y == 0.0:
+            logging.info('Nie można dzielić przez zero, wprowadź inną wartość')
+            y = check_if_number3()
             continue
-        i -=1
-    i = 1
-    while i > 0:
-        y = (input("Wprowadź dzielną: "))
-        if bool(y.isdigit()) == True:
-            pass
         else:
-            print("Wprowadzona wartość nie jest liczbą całkowitą")
-            print("Proszę o ponowne wprowadzenie wartości")
-            continue
-        i -=1
-    quotient = int(x)/int(y)
+            i -= 1
     logging.info (f'Dzielę liczbę {x} przez liczbę {y}')
-    print (f'Wynik to: {quotient}')
+    print (f'Wynik to: {x/y}')
+
+if operation_type > 4:
+    print("Wprowadzono nieprawidłową wartość")
